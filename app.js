@@ -1,1 +1,17 @@
-//O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
+let ListaNomes = [];
+
+
+function adicionarAmigo() {
+    
+    nomeAmigo = document.querySelector('Input').value;
+    if (ListaNomes.includes(nomeAmigo)) {
+        alert(`O nome ${nomeAmigo} ` + 'já foi inserido. Digite outro nome!')
+
+    } else {
+        ListaNomes.push(nomeAmigo);
+    }
+    
+};
+console.log(ListaNomes)
+
+
