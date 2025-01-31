@@ -1,17 +1,34 @@
 let ListaNomes = [];
+let nomeAmigo;
+let sorteador 
+let campoNulo;
 
+
+
+console.log(sorteador)
+console.log(ListaNomes)
 
 function adicionarAmigo() {
-    
+
     nomeAmigo = document.querySelector('Input').value;
     if (ListaNomes.includes(nomeAmigo)) {
         alert(`O nome ${nomeAmigo} ` + 'já foi inserido. Digite outro nome!')
 
     } else {
-        ListaNomes.push(nomeAmigo);
-    }
-    
+        if (nomeAmigo == '') {
+            alert("O nome não pode ser nulo")
+        } else {
+            ListaNomes.push(nomeAmigo);
+        }
+
+    };
 };
-console.log(ListaNomes)
+
+
+function sortearAmigo() {
+    sorteador = Math.random()*ListaNomes.length;
+console.log(sorteador)
+}
+console.log(ListaNomes[sorteador])
 
 
