@@ -1,23 +1,20 @@
-let ListaNomes = [];  // Array para armazenar os nomes
+let Amigos = [];  // Array para armazenar os nomes
 let nomeAmigo; //variavel para guardar os nomes que serão colocados no input
 
 
-function exibirNomesDaLista() {
-    let listaElemento = document.getElementById('listaAmigos'); // Obtém o elemento da lista HTML
-    listaElemento.innerHTML = "";
-    // Percorre o array ListaNomes e cria um <li> para cada nome
-    for (let i = 0; i < ListaNomes.length; i++) {
-        let li = document.createElement('li');  // Cria o <li>
-        li.textContent = ListaNomes[i];  // Define o conteúdo do <li>
-        listaElemento.appendChild(li);  // Adiciona o <li> à lista
-    }
+function ApagarNomesDaLista(){
+let listaItens = document.getElementById('listaAmigos'); // Obtém o elemento da lista HTML
+listaItens.innerHTML = "";
+Amigos.length = 0;
 }
 
-// Função para exibir o resultado do sorteio
 
 function limpaCampo() {
     // limpa input
     document.querySelector('input').value = '';
+    document.getElementById('resultado').innerHTML = null;  // Apaga o valor de "nome"
+ 
+    
 }
 
 function adicionarAmigo() {
@@ -25,7 +22,7 @@ function adicionarAmigo() {
 
     nomeAmigo = document.querySelector('input').value;
     // verifica se o nome já esta na lista de nomes(array)
-    if (ListaNomes.includes(nomeAmigo)) {
+    if (Amigos.includes(nomeAmigo)) {
         alert(`O nome ${nomeAmigo} ` + 'já foi inserido. Digite outro nome!')
 
     } else {
@@ -35,37 +32,47 @@ function adicionarAmigo() {
             return;
         } else {
             // insere os nomes adicionados no array
-            ListaNomes.push(nomeAmigo);
-            exibirNomesDaLista()
+            Amigos.push(nomeAmigo);
+            atualizarListaAmigos()
         }
         limpaCampo();
     };
-    console.log(ListaNomes)
+    console.log(Amigos)
 };
 
-function sortearAmigo() {
 
-    if (ListaNomes.length !== 0) {
 
-        let sorteador = Math.floor(Math.random() * ListaNomes.length);
-        nomeSorteado = ListaNomes[sorteador]
-        // Exibe o nome sorteado no parágrafo com id "nomeSorteado
-                //document.getElementById('botaoSortear').removeAttribute('disabled');
-
-        document.getElementById('resultado').innerHTML = "Amigo sorteado: " + nomeSorteado;
-        document.getElementById('botaoSortear').removeAttribute('disabled');
-    } else {
-        console.log('desabilitado')
-        return;
-
+function  atualizarListaAmigos() {
+    let lista = document.getElementById('listaAmigos'); // Obtém o elemento da lista HTML
+    lista.innerHTML = "";
+    // Percorre o array ListaNomes e cria um <li> para cada nome
+    for (let i = 0; i < Amigos.length; i++) {
+        let li = document.createElement('li');  // Cria o <li>
+        li.textContent = Amigos[i];  // Define o conteúdo do <li>
+        lista.appendChild(li);  // Adiciona o <li> 
     }
+
 }
 
 
 
+// Função para exibir o resultado do sorteio
+function sortearAmigo() {
+    
+    if (Amigos.length === 0) {
 
+       alert("Ainda não há amigos na lista. Por favor, adicione alguns amigos para sortear !");
+       
+        } else{
 
+        let sorteador = Math.floor(Math.random() * Amigos.length);
+        nomeSorteado = Amigos[sorteador]
 
+        document.getElementById('resultado').innerHTML = "Amigo sorteado: " + nomeSorteado;
+
+        ApagarNomesDaLista()
+    }
+    }
 
 
 
